@@ -1,32 +1,56 @@
-# TODO-1: Import and print the logo from art.py when the program starts.
+# ASCII Art Banner
+print(r"""
+
+            C A E S A R ' S   C I P H E R
+            
+""")
 
 
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-# TODO-2: What happens if the user enters a number/symbol/space?
+# Validate direction input
+while True:
+    direction = input("Type 'encode' to encrypt or 'decode' to decrypt:\n").lower()
+    if direction in ["encode", "decode"]:
+        break
+    print("Invalid input. Please type 'encode' or 'decode'.")
 
+# Validate message input (letters + spaces only)
+while True:
+    text = input("Type your message:\n")
+    if all(char.isalpha() or char.isspace() for char in text):
+        break
+    print("Message may only contain letters and spaces.")
 
-def caesar(original_text, shift_amount, encode_or_decode):
-    output_text = ""
+# Validate shift input
+while True:
+    try:
+        shift = int(input("Type the shift number:\n"))
+        break
+    except ValueError:
+        print("Shift must be a valid number.")
 
-    for letter in original_text:
-        if encode_or_decode == "decode":
-            shift_amount *= -1
+# Normalize shift
+shift = shift % len(alphabet)
 
-        shifted_position = alphabet.index(letter) + shift_amount
-        shifted_position %= len(alphabet)
-        output_text += alphabet[shifted_position]
-    print(f"Here is the {encode_or_decode}d result: {output_text}")
+def caesar(original_text, shift_amount, mode):
+    result = ""
+    for char in original_text:
+        if char.isalpha():
+            is_upper = char.isupper()
+            base = alphabet.upper() if is_upper else alphabet
 
+            pos = base.index(char)
+            if mode == "encode":
+                new_pos = (pos + shift_amount) % 26
+            else:
+                new_pos = (pos - shift_amount) % 26
 
-# TODO-3: Can you figure out a way to restart the cipher program?
+            result += base[new_pos]
+        else:
+            result += char
+    return result
 
+output = caesar(text, shift, direction)
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-
-caesar(original_text=text, shift_amount=shift, encode_or_decode=direction)
-
-
-
+print(f"\nHere is the {direction}d result: {output}")
