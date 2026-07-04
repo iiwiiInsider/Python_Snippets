@@ -3,13 +3,12 @@
 enemies = 1
 
 
-def increase_enemies():
-    global enemies
-    enemies += 1
+def increase_enemies(enemy):
     print(f"enemies inside function: {enemies}")
+    return enemies + 1
 
 
-increase_enemies()
+enemies = increase_enemies(enemies)
 print(f"enemies outside function: {enemies}")
 
 
