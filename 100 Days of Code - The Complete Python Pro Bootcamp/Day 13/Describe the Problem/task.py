@@ -1,6 +1,6 @@
 def my_function():
-    for i in range(1, 20):
-        if i == 20:
+    for i in range(1, 20): # Counts from 1 to 19 | Range function does not include the last number.
+        if i == 19:
             print("You got it")
 
 
