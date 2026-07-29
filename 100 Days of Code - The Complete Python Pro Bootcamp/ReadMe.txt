@@ -1,0 +1,1 @@
+Some Days would not be available due to no coursework needed or has already been covered.
