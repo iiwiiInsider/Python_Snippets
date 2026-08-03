@@ -21,7 +21,7 @@ for char in range(1, nr_letters + 1):
 for char in range(1, nr_letters + 1):
     password += random.choice(letters)
 
-print(f"Your password is: {password}")
+print(f"Password generated successfully ({len(password)} characters).")
 
 
 

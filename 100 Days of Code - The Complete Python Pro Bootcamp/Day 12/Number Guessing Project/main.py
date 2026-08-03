@@ -47,12 +47,12 @@ def number_guessing_game():
         elif guess > secret_number:
             print("Too high!")
         else:
-            print(f"\nCorrect! The number was {secret_number}.")
+            print("\nCorrect! You guessed the hidden number.")
             print(f"You guessed it in {attempts_used} attempts.")
             return
 
     print("\nOut of attempts!")
-    print(f"The number was {secret_number}. Better luck next time!")
+    print("The hidden number remains private. Better luck next time!")
 
 if __name__ == "__main__":
     number_guessing_game()
